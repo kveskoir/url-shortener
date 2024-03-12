@@ -1,0 +1,33 @@
+version: '3'
+services:
+  redis-server:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=kotlin
+      - POSTGRES_USER=java
+      - POSTGRES_DB=url_shortener
+  url-shortener-app:
+    build:
+      context: ../
+      dockerfile: containers/Dockerfile
+    links:
+      - redis-server
+      - postgres
+    ports:
+      - "9099:9099"
+  socat:
+    image: bpack/socat
+    command: TCP4-LISTEN:8080,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - "8080"

@@ -1,0 +1,28 @@
+server:
+  port: 9099
+
+redis:
+  host-name: redis
+  port: 6379
+
+flyway:
+  baselineOnMigrate: true
+
+rate-limit:
+  capacity: 1
+  tokens: 20
+  period-in-minutes: 1
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/url_shortener
+    username: java
+    password: kotlin
+  flyway:
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
