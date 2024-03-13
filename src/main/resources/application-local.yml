@@ -4,3 +4,6 @@ redis:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/url_shortener
+  data:
+    redis:
+      host: localhost

@@ -14,6 +14,14 @@ rate-limit:
   period-in-minutes: 1
 
 spring:
+  data:
+    redis:
+      host: redis
+      port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
   datasource:
     url: jdbc:postgresql://postgres:5432/url_shortener
     username: java

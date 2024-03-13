@@ -24,10 +24,10 @@ services:
       - postgres
     ports:
       - "9099:9099"
-  socat:
-    image: bpack/socat
-    command: TCP4-LISTEN:8080,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    expose:
-      - "8080"
+#  socat:
+#    image: bpack/socat
+#    command: TCP4-LISTEN:8080,fork,reuseaddr UNIX-CONNECT:/var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    expose:
+#      - "8080"
